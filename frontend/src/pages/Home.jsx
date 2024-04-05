@@ -24,6 +24,7 @@ useEffect(() => {
       {workouts && workouts.map(workout => (
         <WorkoutDetails key={workout._id} workout={workout}/>
       ))}
+    {workouts && !workouts.length && <div className="error">There are no workouts to display...</div>}
       </div>
       <NewWorkoutForm />
     </div>
