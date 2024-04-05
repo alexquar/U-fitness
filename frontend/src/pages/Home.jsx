@@ -4,18 +4,18 @@ import WorkoutDetails from "../components/WorkoutDetails"
 import NewWorkoutForm from "../components/NewWorkoutForm"
 export default function Home() {
 const {workouts, dispatch} = useWorkoutsContext()
-    useEffect(()=>{
+useEffect(() => {
+    const fetchWorkouts = async () => {
+      const response = await fetch('/api/workouts')
+      const json = await response.json()
 
-    const fetchWorkouts = async ()=>{
-        const res = await fetch('/api/workouts/')
-        const json = await res.json()
-        if(res.ok){
-            dispatch({type:"SET_WORKOUTS", payload:json})
-        }
-    } 
+      if (response.ok) {
+        dispatch({type: 'SET_WORKOUTS', payload: json})
+      }
+    }
 
     fetchWorkouts()
-    },[])
+  }, [dispatch])
 
 
   return (
