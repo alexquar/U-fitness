@@ -5,6 +5,7 @@ export default function NewWorkoutForm() {
     const [reps,setReps]= useState('')
     const [load,setLoad]= useState('')
     const [error,setError] = useState(null)
+    const [emptyFields, setEmptyFields] = useState([])
     const {dispatch} =useWorkoutsContext()
     const handleSubmit = async(e)=>{
             e.preventDefault()
@@ -24,12 +25,14 @@ export default function NewWorkoutForm() {
         const json = await res.json()
         if(!res.ok){
             setError(json.error)
+            setEmptyFields(json.emptyFields)
         } else {
             dispatch({type:'CREATE_WORKOUT', payload: json})
             setError(null)
             setTitle('')
             setReps('')
             setLoad('')
+            setEmptyFields([])
         }
     }
   return (
@@ -45,6 +48,7 @@ export default function NewWorkoutForm() {
              type="text" 
              onChange={(e)=>setTitle(e.target.value)}
              value={title}
+             className={emptyFields.includes('title')? 'error': ''}
              />
         </label>
         <label >
@@ -55,6 +59,7 @@ export default function NewWorkoutForm() {
             type="text" 
             onChange={(e)=>setLoad(e.target.value)}
              value={load}
+             className={emptyFields.includes('load')? 'error': ''}
             />
         </label>
         <label >
@@ -65,6 +70,7 @@ export default function NewWorkoutForm() {
             type="text"
             onChange={(e)=>setReps(e.target.value)}
              value={reps} 
+             className={emptyFields.includes('reps')? 'error': ''}
             />
         </label>
         <button>Add Workout</button>

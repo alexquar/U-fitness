@@ -87,11 +87,12 @@ form button {
   font-family: "Poppins";
   border-radius: 4px;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 15px;
 }
 form button:hover {
   color: var(--primary);
   background: #fff;
+  border: 3px solid var(--primary);
 }
 div.error {
   padding: 10px;
@@ -100,4 +101,7 @@ div.error {
   color: var(--error);
   border-radius: 4px;
   margin: 20px 0;
+}
+input.error {
+  border: 1px solid var(--error);
 }
