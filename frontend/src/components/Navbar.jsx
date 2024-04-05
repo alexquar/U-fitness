@@ -3,7 +3,7 @@ export default function Navbar() {
   return (
    <header>
     <div className="container">
-    <Link to='/'> U Fitness </Link>
+    <Link to='/'> <h1> U Fitness </h1> </Link>
     </div>
    </header>
   )
