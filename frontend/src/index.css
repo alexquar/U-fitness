@@ -24,8 +24,15 @@ header .container {
   justify-content: space-between;
 }
 header a {
-  color: var(--text);
+  color: #fff;
   text-decoration: none;
+}
+#site-title{
+  background: #FFFFFF;
+background: radial-gradient(ellipse farthest-corner at center center, #FFFFFF 0%, #0E191A 100%);
+-webkit-background-clip: text;
+background-clip:text;
+-webkit-text-fill-color: transparent;
 }
 .pages{
   max-width: 1400px;
@@ -109,6 +116,7 @@ input.error {
 nav {
   display: flex;
   align-items: center;
+  color:#fff;
 }
 nav a {
   margin-left: 10px;
@@ -137,4 +145,10 @@ form.signup, form.login {
   background: var(--primary);
   color: #fff;
   border: 3px solid var(--primary);
+}
+
+nav {
+  span{
+    margin-right: 20px;
+  }
 }

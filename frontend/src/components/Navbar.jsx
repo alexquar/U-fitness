@@ -7,7 +7,7 @@ export default function Navbar() {
   return (
    <header>
     <div className="container">
-    <Link to='/'> <h1> U Fitness </h1> </Link>
+    <Link id="site-title" to='/'> <h1> U Fitness </h1> </Link>
     <nav>
   {!user &&
     <div>
@@ -17,6 +17,7 @@ export default function Navbar() {
   }
   { user &&
     <div>
+<span> Welcome {user.email}...</span>
 <button className="btn" onClick={logout}> Logout </button>
     </div>
   }
