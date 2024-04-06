@@ -105,3 +105,35 @@ div.error {
 input.error {
   border: 1px solid var(--error);
 }
+
+nav {
+  display: flex;
+  align-items: center;
+}
+nav a {
+  margin-left: 10px;
+}
+/* auth forms */
+form.signup, form.login {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+}
+
+.btn{
+  background: #fff;
+  border: 0;
+  color: var(--primary);
+  padding: 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+  border-radius: 15px;
+}
+.btn:hover {
+  background: var(--primary);
+  color: #fff;
+  border: 3px solid var(--primary);
+}

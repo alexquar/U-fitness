@@ -4,10 +4,15 @@ export default function Navbar() {
    <header>
     <div className="container">
     <Link to='/'> <h1> U Fitness </h1> </Link>
+    <nav>
     <div>
-    <Link to='/login'> <h1> U Fitness </h1> </Link>
-    <Link to='/signup'> <h1> U Fitness </h1> </Link>
+    <Link to='/login'> login </Link>
+    <Link to='/signup'>  signup </Link>
     </div>
+    <div>
+<button className="btn"> Logout </button>
+    </div>
+    </nav>
     </div>
    </header>
   )
