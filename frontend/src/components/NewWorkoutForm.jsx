@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext"
+import { useAuthContext } from "../hooks/useAuthContext"
 export default function NewWorkoutForm() {
     const [title, setTitle] = useState('')
     const [reps,setReps]= useState('')
@@ -7,8 +8,13 @@ export default function NewWorkoutForm() {
     const [error,setError] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
     const {dispatch} =useWorkoutsContext()
+    const {user} =useAuthContext()
     const handleSubmit = async(e)=>{
             e.preventDefault()
+        if(!user){
+            setError('Must be logged in...')
+            return 
+        }
         const workout = {
             title,
             load,
@@ -18,7 +24,8 @@ export default function NewWorkoutForm() {
             method:'POST',
             body : JSON.stringify(workout),
             headers : {
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         })
 
@@ -48,7 +55,7 @@ export default function NewWorkoutForm() {
              type="text" 
              onChange={(e)=>setTitle(e.target.value)}
              value={title}
-             className={emptyFields.includes('title')? 'error': ''}
+             className={emptyFields && emptyFields.length>0 && emptyFields.includes('load')? 'error': ''}
              />
         </label>
         <label >
@@ -59,7 +66,7 @@ export default function NewWorkoutForm() {
             type="text" 
             onChange={(e)=>setLoad(e.target.value)}
              value={load}
-             className={emptyFields.includes('load')? 'error': ''}
+             className={ emptyFields && emptyFields.length>0 && emptyFields.includes('load')? 'error': ''}
             />
         </label>
         <label >
@@ -70,7 +77,7 @@ export default function NewWorkoutForm() {
             type="text"
             onChange={(e)=>setReps(e.target.value)}
              value={reps} 
-             className={emptyFields.includes('reps')? 'error': ''}
+             className={emptyFields && emptyFields.length>0 && emptyFields.includes('load')? 'error': ''}
             />
         </label>
         <button>Add Workout</button>
