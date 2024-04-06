@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 
 const requireAuth = async (req, res, next) => {
+  // verify user is authenticated
   const { authorization } = req.headers
 
   if (!authorization) {
@@ -12,7 +13,7 @@ const requireAuth = async (req, res, next) => {
 
   try {
     const { _id } = jwt.verify(token, process.env.SECRET)
-    //selects and attaches the user _id to the req then moves on to next middleware
+
     req.user = await User.findOne({ _id }).select('_id')
     next()
 
