@@ -8,6 +8,11 @@ const {
   updateWorkout
 } = require('../controllers/workoutController')
 
+//makes sure user is authed before using any routes
+const requireAuth = require('../middleware/requireAuth')
+
+router.use(requireAuth)
+
 router.get('/', getWorkouts)
 
 router.get('/:id', getWorkout)
